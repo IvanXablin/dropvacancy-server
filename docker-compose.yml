@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: "always"
+    ports:
+      - "27017:27017"
+  dv_server:
+     build: .
+     depends_on:
+       - mongo
+     links:
+       - mongo
+     ports:
+       - "5050:5050"
